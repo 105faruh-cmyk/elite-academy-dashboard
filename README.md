@@ -1,1 +1,3 @@
-# elite-academy-dashboard
+# Elite Academy — дашборд рекламы
+
+Страница защищена паролем: данные лежат в `data.enc.json` в зашифрованном виде (AES-GCM, ключ из пароля через PBKDF2).
