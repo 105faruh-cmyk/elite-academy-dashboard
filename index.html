@@ -22,7 +22,7 @@ h1{font-size:40px;font-weight:800;margin:2px 0 0;letter-spacing:-.02em}
 .ic{width:28px;height:28px;border-radius:50%;background:#eef3ff;color:var(--blue);display:inline-flex;align-items:center;justify-content:center;font-size:13px;flex:none}
 .big{font-size:30px;font-weight:800;margin-top:22px;letter-spacing:-.01em;white-space:nowrap}
 .sub{font-size:12px;color:var(--mut);margin-top:4px}
-.funnel{grid-row:span 3}.row4{grid-column:2 / -1;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.chips{display:flex;gap:8px;flex-wrap:wrap;margin:-6px 0 16px}.chips button{border:1.5px solid var(--line);background:#fff;border-radius:99px;padding:7px 16px;cursor:pointer;font-weight:600;color:var(--mut)}.chips button.on{border-color:var(--blue);background:var(--blue);color:#fff}.k3{grid-column:span 1}.row2{grid-column:2 / -1;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.row3{grid-column:1 / -1;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.funnel{grid-row:span 3}.row5{grid-column:1 / -1;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.row4{grid-column:2 / -1;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.chips{display:flex;gap:8px;flex-wrap:wrap;margin:-6px 0 16px}.chips button{border:1.5px solid var(--line);background:#fff;border-radius:99px;padding:7px 16px;cursor:pointer;font-weight:600;color:var(--mut)}.chips button.on{border-color:var(--blue);background:var(--blue);color:#fff}.k3{grid-column:span 1}.row2{grid-column:2 / -1;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.row3{grid-column:1 / -1;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .fbars{margin-top:14px;display:flex;flex-direction:column;gap:12px}.fr{display:grid;grid-template-columns:78px 1fr 74px;gap:10px;align-items:center}.ft{font-size:13px;color:var(--mut)}.fb{height:22px;background:#f1f5fb;border-radius:6px;overflow:hidden}.fb i{display:block;height:100%;border-radius:6px}.fn{text-align:right;line-height:1.15}.fn b{display:block;font-size:15px}.fn span{font-size:11px;color:var(--mut)}
 .fcol{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;min-width:0}
 .fcol .n{font-weight:800;font-size:14px;white-space:nowrap}.fcol .p{font-size:12px;color:var(--mut);margin-bottom:6px}
@@ -87,8 +87,8 @@ tr.tot td{font-weight:800;background:#f8faff;border-top:2px solid var(--line)}
 #login .err{color:var(--bad);font-size:13px;margin-top:10px;min-height:18px}
 .tip{position:fixed;pointer-events:none;background:#0f172a;color:#fff;font-size:12px;padding:8px 10px;border-radius:8px;z-index:30;line-height:1.5;display:none}
 svg text{font-family:inherit}
-@media (max-width:1180px){.grid{grid-template-columns:repeat(3,1fr)}.funnel{grid-column:1 / -1;grid-row:auto}.spend{grid-column:1 / -1}.row2,.row4{grid-column:1 / -1}}
-@media (max-width:640px){.wrap{padding:18px 12px 40px}h1{font-size:30px}.grid{grid-template-columns:repeat(2,1fr);gap:10px}.funnel,.spend{grid-column:1 / -1}.row2{grid-template-columns:repeat(2,1fr);gap:10px}.row3{grid-template-columns:1fr;gap:10px}.row4{grid-template-columns:repeat(2,1fr);gap:10px}.grid .k6{grid-column:span 1}.big{font-size:24px;margin-top:14px}.sr .big{font-size:22px}.pop{position:fixed;left:12px;right:12px;top:80px;width:auto}.tools input{min-width:0;width:100%}.card{padding:14px}}
+@media (max-width:1180px){.grid{grid-template-columns:repeat(3,1fr)}.funnel{grid-column:1 / -1;grid-row:auto}.spend{grid-column:1 / -1}.row2,.row4,.row5{grid-column:1 / -1}}
+@media (max-width:640px){.wrap{padding:18px 12px 40px}h1{font-size:30px}.grid{grid-template-columns:repeat(2,1fr);gap:10px}.funnel,.spend{grid-column:1 / -1}.row2{grid-template-columns:repeat(2,1fr);gap:10px}.row3{grid-template-columns:1fr;gap:10px}.row4,.row5{grid-template-columns:repeat(2,1fr);gap:10px}.grid .k6{grid-column:span 1}.big{font-size:24px;margin-top:14px}.sr .big{font-size:22px}.pop{position:fixed;left:12px;right:12px;top:80px;width:auto}.tools input{min-width:0;width:100%}.card{padding:14px}}
 </style>
 </head>
 <body>
@@ -136,7 +136,7 @@ svg text{font-family:inherit}
     </div>
     <div class="card k6"><div class="lbl">Заявки<span class="ic">✉</span></div><div class="big" id="vZay"></div><div class="sub" id="vZayS"></div></div>
     <div class="card k6"><div class="lbl">Лиды<span class="ic">👥</span></div><div class="big" id="vLeads"></div></div>
-    <div class="card k6"><div class="lbl">Квал. лиды<span class="ic">★</span></div><div class="big" id="vQ"></div></div>
+    <div class="card k6"><div class="lbl">Квал. лиды<span class="ic">★</span></div><div class="big" id="vQ"></div><div class="sub" id="vQs"></div></div>
     <div class="row2">
       <div class="card"><div class="lbl">Назначено<span class="ic">📅</span></div><div class="big" id="vNaz"></div></div>
       <div class="card"><div class="lbl">Проведено<span class="ic">💬</span></div><div class="big" id="vProv"></div></div>
@@ -144,10 +144,16 @@ svg text{font-family:inherit}
       <div class="card"><div class="lbl">Успешно<span class="ic">✓</span></div><div class="big" id="vWon"></div></div>
     </div>
     <div class="row4">
-      <div class="card"><div class="lbl">CPL<span class="ic">$</span></div><div class="big" id="vCpl"></div><div class="sub">цена лида · план $1,70</div></div>
-      <div class="card"><div class="lbl">CPQL<span class="ic">$</span></div><div class="big" id="vCpq"></div><div class="sub">цена квала · план $5,50</div></div>
+      <div class="card"><div class="lbl">CPL<span class="ic">$</span></div><div class="big" id="vCpl"></div><div class="sub">расход ÷ лиды с таргета · план $1,70</div></div>
+      <div class="card"><div class="lbl">CPQL<span class="ic">$</span></div><div class="big" id="vCpq"></div><div class="sub">расход ÷ квалы с таргета · план $5,50</div></div>
       <div class="card"><div class="lbl">Цена продажи<span class="ic">$</span></div><div class="big" id="vCps"></div></div>
       <div class="card"><div class="lbl">Средний чек<span class="ic">🧾</span></div><div class="big" id="vAvg"></div><div class="sub" id="vAvgS"></div></div>
+    </div>
+    <div class="row5">
+      <div class="card"><div class="lbl">Лиды с таргета · ССП<span class="ic">🎯</span></div><div class="big" id="sLt"></div><div class="sub" id="sLo"></div></div>
+      <div class="card"><div class="lbl">Квалы с таргета · ССП<span class="ic">★</span></div><div class="big" id="sQf"></div><div class="sub">«Квалы.Фарух»</div></div>
+      <div class="card"><div class="lbl">Квалы ОП · ССП<span class="ic">★</span></div><div class="big" id="sQop"></div><div class="sub" id="sQai"></div></div>
+      <div class="card"><div class="lbl">Квалы органика · ССП<span class="ic">★</span></div><div class="big" id="sQo"></div></div>
     </div>
     <div class="row3">
       <div class="card"><div class="lbl">ROMI<span class="ic">%</span></div><div class="big" id="vRomi"></div><div class="sub">(доход − расход) ÷ расход</div></div>
@@ -239,6 +245,7 @@ function revOf(j){return (j[7]+(ST.avg?Math.max(0,j[5]-j[8])*AVGK:0))/FX}
 function totals(){
   var t={spend:0,impr:0,reach:0,clicks:0,fb:0,j:[0,0,0,0,0,0,0,0,0]};
   DAYS.forEach(function(d){if(!inR(d))return;var m=mday(d);['spend','impr','reach','clicks','fb'].forEach(function(k){t[k]+=m[k]});var j=jday(d);for(var i=0;i<9;i++)t.j[i]+=j[i];});
+  t.s=[0,0,0,0,0,0,0];DAYS.forEach(function(d){if(!inR(d))return;var x=D.ssp&&D.ssp[d];if(!x)return;for(var i=0;i<7;i++)t.s[i]+=x[i]||0;});
   t.rev=revOf(t.j);return t;
 }
 function render(){
@@ -256,7 +263,9 @@ function render(){
   $('vZay').textContent=nf(j[0]);$('vZayS').textContent='переписок с рекламы в FB: '+nf(t.fb);
   $('vLeads').textContent=nf(j[1]);$('vQ').textContent=nf(j[2]);
   $('vNaz').textContent=nf(j[3]);$('vProv').textContent=nf(j[4]);$('vPre').textContent=nf(j[5]);$('vWon').textContent=nf(j[6]);
-  var cpl=j[1]?t.spend/j[1]:null,cpq=j[2]?t.spend/j[2]:null,cps=j[5]?t.spend/j[5]:null;
+  var S=t.s;$('sLt').textContent=nf(S[0]);$('sLo').textContent='органика: '+nf(S[1]);$('sQf').textContent=nf(S[4]);$('sQop').textContent=nf(S[2]);$('sQai').textContent=S[3]?'ещё квалы AI: '+nf(S[3]):'';$('sQo').textContent=nf(S[5]);
+  $('vQs').textContent='по ССП: таргет '+nf(S[4])+' · ОП '+nf(S[2]);
+  var cpl=S[0]?t.spend/S[0]:null,cpq=S[4]?t.spend/S[4]:null,cps=j[5]?t.spend/j[5]:null;
   $('vCpl').textContent=usd(cpl);$('vCpq').textContent=usd(cpq);$('vCps').textContent=usd(cps);
   tone($('vCpl'),'cpl',cpl);tone($('vCpq'),'cpq',cpq);
   $('vAvg').textContent=usd(j[5]?t.rev/j[5]:null);$('vAvgS').textContent=j[5]?('бюджет заполнен у '+j[8]+' из '+j[5]+' сделок'):'';
@@ -273,7 +282,7 @@ function tone(el,k,v){el.style.color={g:'var(--ok)',y:'var(--mid)',rd:'var(--bad
 function drawChart(){
   var el=$('ch');if(!el)return;var ds=DAYS.filter(inR);
   var W=Math.max(300,el.clientWidth),H=240,m={l:44,r:40,t:14,b:26};
-  var rows=ds.map(function(d){var j=jday(d);return {d:d,s:mday(d).spend,l:j[1],q:j[2]}});
+  var rows=ds.map(function(d){var j=jday(d),x=(D.ssp&&D.ssp[d])||[];return {d:d,s:mday(d).spend,l:j[1],q:j[2],lt:x[0],qf:x[4]}});
   var ms=Math.max(1,Math.max.apply(null,rows.map(function(r){return r.s})));
   var ml=Math.max(1,Math.max.apply(null,rows.map(function(r){return r.l})));
   var n=rows.length,bw=(W-m.l-m.r)/Math.max(1,n);
@@ -291,21 +300,21 @@ function drawChart(){
   s+='</svg>';el.innerHTML=s;
   var tip=$('tip');
   el.querySelectorAll('.hz').forEach(function(h){h.addEventListener('pointermove',function(e){var r=rows[+h.dataset.i];tip.style.display='block';
-    tip.innerHTML='<b>'+fmtD(r.d)+'</b><br>Расход: '+usd(r.s)+'<br>Лиды: '+nf(r.l)+'<br>Квал. лиды: '+nf(r.q)+'<br>Цена лида: '+usd(r.l?r.s/r.l:null);
+    tip.innerHTML='<b>'+fmtD(r.d)+'</b><br>Расход: '+usd(r.s)+'<br>Лиды: '+nf(r.l)+'<br>Квал. лиды: '+nf(r.q)+'<br>Лиды с таргета (ССП): '+nf(r.lt)+'<br>Цена лида: '+usd(r.lt?r.s/r.lt:null)+'<br>Цена квала: '+usd(r.qf?r.s/r.qf:null);
     tip.style.left=Math.min(window.innerWidth-170,e.clientX+14)+'px';tip.style.top=(e.clientY-10)+'px';});
     h.addEventListener('pointerleave',function(){tip.style.display='none'})});
 }
 
 /* ---------- table ---------- */
 var COLS_AD=[['name','Название'],['status','Статус'],['spend','Расход'],['impr','Показы'],['reach','Охват'],['clicks','Клики'],['ctr','CTR'],['cpc','CPC'],['fb','Заявки FB'],['cpz','Цена заявки'],['lid','Лиды'],['cpl','Цена лида'],['q','Квал.'],['l2q','Лид→Квал'],['cpq','Цена квал.'],['naz','Встречи'],['sale','Продажи'],['rev','Доход'],['romi','ROMI'],['roas','ROAS']];
-var COLS_DAY=[['name','День'],['spend','Расход'],['impr','Показы'],['clicks','Клики'],['fb','Заявки FB'],['zay','Заявки'],['lid','Лиды'],['cpl','Цена лида'],['q','Квал.'],['cpq','Цена квал.'],['naz','Назначено'],['prov','Проведено'],['pre','Предоплата'],['won','Успешно'],['rev','Доход'],['romi','ROMI'],['roas','ROAS']];
-function zr(){return {spend:0,impr:0,reach:0,clicks:0,fb:0,zay:0,lid:0,q:0,naz:0,prov:0,pre:0,won:0,sale:0,rev:0}}
+var COLS_DAY=[['name','День'],['spend','Расход'],['impr','Показы'],['clicks','Клики'],['fb','Заявки FB'],['zay','Заявки'],['lid','Лиды'],['q','Квал.'],['slt','Лиды таргет ССП'],['cpl','Цена лида'],['sqf','Квалы таргет ССП'],['sqop','Квалы ОП ССП'],['cpq','Цена квал.'],['naz','Назначено'],['prov','Проведено'],['pre','Предоплата'],['won','Успешно'],['rev','Доход'],['romi','ROMI'],['roas','ROAS']];
+function zr(){return {spend:0,impr:0,reach:0,clicks:0,fb:0,zay:0,lid:0,q:0,naz:0,prov:0,pre:0,won:0,sale:0,rev:0,slt:0,sqf:0,sqop:0}}
 function finish(o){o.ctr=o.impr?o.clicks/o.impr:null;o.cpc=o.clicks?o.spend/o.clicks:null;o.cpz=o.fb?o.spend/o.fb:null;o.cpl=o.lid?o.spend/o.lid:null;
   o.l2q=o.lid?o.q/o.lid:null;o.cpq=o.q?o.spend/o.q:null;o.romi=o.spend?(o.rev-o.spend)/o.spend:null;o.roas=o.spend?o.rev/o.spend:null;return o}
 function rowsFor(level){
   if(level==='day'){
     return DAYS.filter(inR).map(function(d){var o=zr(),m=mday(d),j=jday(d);['spend','impr','reach','clicks','fb'].forEach(function(k){o[k]=m[k]});
-      o.zay=j[0];o.lid=j[1];o.q=j[2];o.naz=j[3];o.prov=j[4];o.pre=j[5];o.won=j[6];o.rev=revOf(j);o.name=fmtLong(d);o.date=d;return finish(o)});
+      o.zay=j[0];o.lid=j[1];o.q=j[2];o.naz=j[3];o.prov=j[4];o.pre=j[5];o.won=j[6];o.rev=revOf(j);o.name=fmtLong(d);o.date=d;var x=(D.ssp&&D.ssp[d])||[];o.slt=x[0]||0;o.sqf=x[4]||0;o.sqop=x[2]||0;finish(o);o.cpl=o.slt?o.spend/o.slt:null;o.cpq=o.sqf?o.spend/o.sqf:null;return o});
   }
   var map={},ads=D.ads;
   var keyOf=function(a){return level==='ad'?a[0]:level==='adset'?a[3]+'|'+a[2]:a[2]};
@@ -326,7 +335,7 @@ function renderTable(){
   var cols=ST.level==='day'?COLS_DAY:COLS_AD;
   $('th').innerHTML='<tr>'+cols.map(function(c){var key=c[0]==='name'&&ST.level==='day'?'date':c[0];return '<th data-k="'+key+'" class="'+(ST.sort===key?'sorted'+(ST.asc?' asc':''):'')+'">'+c[1]+'</th>'}).join('')+'</tr>';
   document.querySelectorAll('#th th').forEach(function(th){th.addEventListener('click',function(){var kk=th.dataset.k;if(ST.sort===kk)ST.asc=!ST.asc;else{ST.sort=kk;ST.asc=kk==='name';}renderTable()})});
-  var tot=zr();rows.forEach(function(o){Object.keys(tot).forEach(function(f){tot[f]+=o[f]||0})});tot.name='Итого';finish(tot);
+  var tot=zr();rows.forEach(function(o){Object.keys(tot).forEach(function(f){tot[f]+=o[f]||0})});tot.name='Итого';finish(tot);if(ST.level==='day'){tot.cpl=tot.slt?tot.spend/tot.slt:null;tot.cpq=tot.sqf?tot.spend/tot.sqf:null;}
   var cell=function(c,o){var v=o[c];switch(c){
     case 'name':return '<td>'+esc(o.name)+(o.sub&&o.sub!==o.name?'<small>'+esc(o.sub)+'</small>':'')+'</td>';
     case 'status':return '<td>'+(o.status?'<span class="pill '+(/ACTIVE/.test(o.status)&&!/PAUSED/.test(o.status)?'on':'off')+'">'+(/ACTIVE/.test(o.status)&&!/PAUSED/.test(o.status)?'Активно':'На паузе')+'</span>':'')+'</td>';
