@@ -68,6 +68,7 @@ form.f{padding:22px 24px;display:grid;grid-template-columns:repeat(2,minmax(0,1f
 .f .full{grid-column:1/-1}
 .f input,.f select,.f textarea{border:1.5px solid var(--line);background:var(--bg);border-radius:10px;padding:10px 12px;font-size:16px;font-weight:400;color:var(--ink)}
 .f textarea{min-height:84px;resize:vertical}
+.dr{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}
 .f .o3{grid-column:1/-1;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
 .acts{grid-column:1/-1;display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap;margin-top:6px}
 .acts div{display:flex;gap:10px}
@@ -113,7 +114,7 @@ form.f{padding:22px 24px;display:grid;grid-template-columns:repeat(2,minmax(0,1f
   <label>Статус<select id="f_status"></select></label>
   <label>Страна / направление<input id="f_country" placeholder="Италия, США, Китай…"></label>
   <label>Ответственный<input id="f_owner" placeholder="Имя"></label>
-  <label>Даты теста<input id="f_dates" placeholder="01.12 – 07.12"></label>
+  <label>Даты теста (с — по)<span class="dr"><input id="f_d1" type="date" aria-label="Начало теста"><input id="f_d2" type="date" aria-label="Конец теста"></span><input id="f_dates" type="hidden"></label>
   <label>Ссылка на рилс / пост<input id="f_link" type="url" placeholder="https://instagram.com/reel/…"></label>
   <div class="sec">🎯 Таргет — цифры подтянутся сами 2 раза в день, пока статус «В тесте»</div>
   <label class="full">ID кампании, группы или объявления в Meta<input id="f_metaIds" placeholder="120212345678901234 (несколько — через запятую)"></label>
@@ -208,11 +209,14 @@ function render(){
   $('add').hidden=!canWrite;
 }
 
+const toRu=iso=>{const m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(iso||'');return m?m[3]+'.'+m[2]+'.'+m[1].slice(2):''};
+const toIso=ru=>{const m=/^(\d{1,2})\.(\d{1,2})(?:\.(\d{2,4}))?$/.exec((ru||'').trim());if(!m)return '';let y=m[3]||String(new Date().getFullYear());if(y.length===2)y='20'+y;return y+'-'+m[2].padStart(2,'0')+'-'+m[1].padStart(2,'0')};
 function openDlg(id){
   editId=id;const it=items.find(x=>x.id===id)||{status:'idea',channel:'Таргет'};
   $('dt').textContent=id?'Гипотеза':'Новая гипотеза';
   for(const k of F)$('f_'+k).value=it[k]||'';
   if(!it.status)$('f_status').value='idea';
+  const pr=String(it.dates||'').split(/\s*[–—-]\s*/);$('f_d1').value=toIso(pr[0]);$('f_d2').value=toIso(pr[1]);
   $('del').hidden=!id;$('del').textContent='Удалить';$('del').dataset.sure='';
   for(const el of $('frm').querySelectorAll('input,select,textarea'))el.disabled=!canWrite;
   $('save').hidden=!canWrite;
@@ -227,6 +231,7 @@ async function write(fn,okMsg){
 }
 $('frm').addEventListener('submit',e=>{
   e.preventDefault();if(!db)return;
+  {const a=toRu($('f_d1').value),b=toRu($('f_d2').value);$('f_dates').value=a&&b?a+' – '+b:(a||b);}
   const d={};for(const k of F)d[k]=$('f_'+k).value.trim();
   if(!d.hyp){$('f_hyp').focus();return}
   d.updated=Date.now();
