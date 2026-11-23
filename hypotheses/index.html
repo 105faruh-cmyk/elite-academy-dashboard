@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Elite Academy — Гипотезы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--line:#e6eaf2;--fg:#0f172a;--mut:#64748b;--blue:#2563eb;--blue2:#3b82f6;--ok:#16a34a;--okb:#dcfce7;--mid:#ca8a04;--midb:#fef9c3;--bad:#dc2626;--badb:#fee2e2;--r:16px}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--fg);font-family:'Golos Text',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:14px}
+button,input{font:inherit}a{color:var(--blue)}
+.wrap{max-width:1360px;margin:0 auto;padding:28px 24px 60px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.brand{font-size:12px;letter-spacing:.14em;font-weight:700;color:var(--blue);text-transform:uppercase}
+h1{font-size:40px;font-weight:800;margin:2px 0 0;letter-spacing:-.02em}
+.upd{color:var(--mut);font-size:12px;margin-top:4px}
+.add{background:var(--blue);color:#fff;border-radius:12px;padding:11px 18px;font-weight:600;text-decoration:none;white-space:nowrap}
+.add:hover{background:var(--blue2)}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:18px}
+.stat{background:var(--card);border:1.5px solid var(--line);border-radius:var(--r);padding:14px 16px;cursor:pointer;text-align:left}
+.stat:hover,.stat.on{border-color:var(--blue)}
+.stat .l{font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--mut)}
+.stat .v{font-size:30px;font-weight:800;margin-top:8px}
+.tools{display:flex;gap:10px;align-items:center;justify-content:space-between;margin:0 0 16px;flex-wrap:wrap}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chips button{border:1.5px solid var(--line);background:#fff;border-radius:99px;padding:7px 16px;cursor:pointer;font-weight:600;color:var(--mut)}
+.chips button.on{border-color:var(--blue);color:var(--blue);background:#eef3ff}
+.tools input{border:1.5px solid var(--line);border-radius:10px;padding:9px 12px;min-width:260px;background:#fff}
+.board{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:start}
+.col{background:#eef1f7;border-radius:var(--r);padding:12px;min-height:120px}
+.col h3{margin:4px 6px 12px;font-size:15px;display:flex;justify-content:space-between}
+.col h3 span{color:var(--mut);font-weight:600}
+.empty{color:var(--mut);font-size:13px;padding:10px 6px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:10px;box-shadow:0 1px 2px rgba(15,23,42,.03)}
+.ch{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:8px}
+.num{font-size:12px;color:var(--mut);font-weight:600;text-decoration:none}
+.hyp{font-weight:600;line-height:1.45;margin:0 0 10px}
+.pills{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.pill{display:inline-block;padding:3px 10px;border-radius:99px;font-size:12px;font-weight:600;background:#f1f5f9;color:var(--mut)}
+.pill.b{background:#eef3ff;color:var(--blue)}
+.res{padding:3px 10px;border-radius:99px;font-size:12px;font-weight:700;white-space:nowrap}
+.r-ok{background:var(--okb);color:#166534}.r-mid{background:var(--midb);color:#854d0e}.r-bad{background:var(--badb);color:#991b1b}.r-test{background:#eef3ff;color:var(--blue)}
+.m{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:8px}
+.m div{background:#f8faff;border-radius:10px;padding:7px 9px}
+.m b{display:block;font-size:14px}.m small{font-size:11px;color:var(--mut)}
+.mh{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);margin-top:10px}
+.concl{margin-top:10px;font-size:13px;line-height:1.5;color:#334155;border-left:3px solid var(--line);padding-left:10px}
+.meta{font-size:12px;color:var(--mut);margin-top:10px;display:flex;gap:10px;flex-wrap:wrap}
+#login{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:50;padding:20px}
+#login form{background:#fff;border:1px solid var(--line);border-radius:20px;padding:30px;width:100%;max-width:360px;box-shadow:0 10px 40px rgba(15,23,42,.08)}
+#login h2{margin:6px 0 18px;font-size:24px}
+#login input{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;font-size:16px}
+#login button{width:100%;margin-top:12px;background:var(--blue);color:#fff;border:0;border-radius:12px;padding:12px;font-size:16px;font-weight:600;cursor:pointer}
+#login .err{color:var(--bad);font-size:13px;margin-top:10px;min-height:18px}
+@media (max-width:1000px){.board{grid-template-columns:1fr}.stats{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:640px){.wrap{padding:18px 12px 40px}h1{font-size:30px}.stats{grid-template-columns:repeat(2,1fr);gap:10px}.tools input{min-width:0;width:100%}}
+</style>
+</head>
+<body>
+<div id="login"><form id="lf" autocomplete="on">
+  <div class="brand">Elite Academy</div>
+  <h2>Трекер гипотез</h2>
+  <input type="password" id="pw" placeholder="Пароль" autocomplete="current-password" aria-label="Пароль">
+  <button id="lb" type="submit">Войти</button>
+  <div class="err" id="le" role="alert"></div>
+</form></div>
+
+<div class="wrap" id="app" hidden>
+  <div class="top">
+    <div><div class="brand">Elite Academy</div><h1>Гипотезы</h1><div class="upd" id="upd"></div></div>
+    <a class="add" id="add" target="_blank" rel="noopener">+ Новая гипотеза</a>
+  </div>
+  <div class="stats" id="stats"></div>
+  <div class="tools">
+    <div class="chips" id="chips" role="group" aria-label="Канал"></div>
+    <input id="q" type="search" placeholder="Поиск по гипотезам, стране, автору…" aria-label="Поиск">
+  </div>
+  <div class="board" id="board"></div>
+</div>
+
+<script>
+(function(){
+'use strict';
+var D=null,ST={ch:'Все',q:'',st:null};
+var $=function(id){return document.getElementById(id)};
+var b64=function(s){var b=atob(s),u=new Uint8Array(b.length);for(var i=0;i<b.length;i++)u[i]=b.charCodeAt(i);return u};
+var esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
+var nf=function(v,d){if(v==null||v===''||!isFinite(v))return '—';return Number(v).toLocaleString('ru-RU',{maximumFractionDigits:d==null?0:d})};
+var usd=function(v){return v==null||!isFinite(v)?'—':'$'+nf(v,2)};
+
+async function decrypt(pw){
+  var e=await fetch('data.enc.json',{cache:'no-store'}).then(function(r){if(!r.ok)throw new Error('nofile');return r.json()});
+  var enc=new TextEncoder();
+  var km=await crypto.subtle.importKey('raw',enc.encode(pw),'PBKDF2',false,['deriveKey']);
+  var key=await crypto.subtle.deriveKey({name:'PBKDF2',salt:b64(e.salt),iterations:300000,hash:'SHA-256'},km,{name:'AES-GCM',length:256},false,['decrypt']);
+  var pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:b64(e.iv)},key,b64(e.ct));
+  return JSON.parse(new TextDecoder().decode(pt));
+}
+function ss(k,v){try{if(v===undefined)return sessionStorage.getItem(k);sessionStorage.setItem(k,v)}catch(e){return null}}
+async function login(pw,silent){
+  $('lb').disabled=true;$('le').textContent=silent?'':'Открываю…';
+  try{D=await decrypt(pw);ss('ea_hyp_pw',pw);$('login').remove();$('app').hidden=false;init();}
+  catch(e){$('le').textContent=silent?'':(String(e.message)==='nofile'?'Файл с данными не найден':'Неверный пароль');$('lb').disabled=false;}
+}
+$('lf').addEventListener('submit',function(ev){ev.preventDefault();login($('pw').value)});
+var saved=ss('ea_hyp_pw');if(saved)login(saved,true);
+
+var STAT=[
+  {k:'💡 идея',t:'💡 Не тестировали'},
+  {k:'🧪 в тесте',t:'🧪 В тесте'},
+  {k:'✅ масштабируем',t:'✅ Масштабируем',cls:'r-ok'},
+  {k:'🤔 спорно',t:'🤔 Спорно',cls:'r-mid'},
+  {k:'⛔ не повторять',t:'⛔ Не повторять',cls:'r-bad'}
+];
+var COLS=[
+  {t:'💡 Не тестировали',ks:['💡 идея']},
+  {t:'🧪 В тесте',ks:['🧪 в тесте']},
+  {t:'🏁 Протестировали',ks:['✅ масштабируем','🤔 спорно','⛔ не повторять']}
+];
+var CH=['Все','Таргет','Рилс','Пост','Сторис'];
+
+function init(){
+  $('upd').textContent='Обновлено '+new Date(D.updated).toLocaleString('ru-RU',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
+  $('add').href=D.new_url;
+  $('chips').innerHTML=CH.map(function(c){return '<button data-c="'+c+'">'+c+'</button>'}).join('');
+  $('chips').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;ST.ch=b.dataset.c;render()});
+  $('stats').addEventListener('click',function(e){var b=e.target.closest('.stat');if(!b)return;ST.st=ST.st===b.dataset.k?null:b.dataset.k;render()});
+  $('q').addEventListener('input',function(){ST.q=this.value.toLowerCase();render()});
+  render();
+}
+
+function match(it){
+  if(ST.ch!=='Все'&&(it.channel||'').indexOf(ST.ch)<0)return false;
+  if(ST.st&&it.status!==ST.st)return false;
+  if(ST.q){var h=[it.hyp,it.country,it.owner,it.channel,it.result,'#'+it.n].join(' ').toLowerCase();if(h.indexOf(ST.q)<0)return false}
+  return true;
+}
+
+function card(it){
+  var s=STAT.filter(function(x){return x.k===it.status})[0]||{};
+  var h='<div class="card"><div class="ch"><a class="num" href="'+esc(it.url)+'" target="_blank" rel="noopener">#'+it.n+' · открыть</a>';
+  if(s.cls)h+='<span class="res '+s.cls+'">'+esc(s.t)+'</span>';
+  h+='</div><p class="hyp">'+esc(it.hyp)+'</p><div class="pills">';
+  if(it.channel)h+='<span class="pill b">'+esc(it.channel)+'</span>';
+  if(it.country)h+='<span class="pill">'+esc(it.country)+'</span>';
+  h+='</div>';
+  var m=it.meta;
+  if(m){
+    h+='<div class="mh">🎯 Таргет</div><div class="m">'+
+      '<div><b>'+usd(m.spend)+'</b><small>Бюджет</small></div>'+
+      '<div><b>'+nf(m.leads)+'</b><small>Лиды</small></div>'+
+      '<div><b>'+usd(m.cpl)+'</b><small>CPL</small></div>'+
+      '<div><b>'+(m.ctr==null?'—':nf(m.ctr,2)+'%')+'</b><small>CTR</small></div>'+
+      '<div><b>'+usd(m.cpm)+'</b><small>CPM</small></div>'+
+      '<div><b>'+(m.cost_per_qual?usd(m.cost_per_qual):'—')+'</b><small>Цена квала</small></div></div>';
+  }
+  var o=it.org||{},hasO=['views','reach','er','saves','leads'].some(function(k){return o[k]});
+  if(hasO){
+    h+='<div class="mh">📱 Органика</div><div class="m">'+
+      '<div><b>'+esc(o.views||'—')+'</b><small>Просмотры</small></div>'+
+      '<div><b>'+esc(o.reach||'—')+'</b><small>Охват</small></div>'+
+      '<div><b>'+(o.er?esc(o.er)+'%':'—')+'</b><small>ER</small></div>'+
+      '<div><b>'+esc(o.saves||'—')+'</b><small>Сохр./репосты</small></div>'+
+      '<div><b>'+esc(o.leads||'—')+'</b><small>Лиды</small></div></div>';
+  }
+  if(it.result)h+='<div class="concl">'+esc(it.result)+'</div>';
+  var mt=[];
+  if(it.owner)mt.push('👤 '+esc(it.owner));
+  if(it.dates)mt.push('📅 '+esc(it.dates));
+  if(it.link&&/^https?:\/\//.test(it.link))mt.push('<a href="'+esc(it.link)+'" target="_blank" rel="noopener">▶ Рилс / пост</a>');
+  if(mt.length)h+='<div class="meta">'+mt.join('<span>·</span>')+'</div>';
+  return h+'</div>';
+}
+
+function render(){
+  [].forEach.call($('chips').children,function(b){b.classList.toggle('on',b.dataset.c===ST.ch)});
+  var byCh=D.items.filter(function(it){return ST.ch==='Все'||(it.channel||'').indexOf(ST.ch)>=0});
+  $('stats').innerHTML=STAT.map(function(s){
+    var n=byCh.filter(function(it){return it.status===s.k}).length;
+    return '<button class="stat'+(ST.st===s.k?' on':'')+'" data-k="'+s.k+'"><div class="l">'+s.t+'</div><div class="v">'+n+'</div></button>';
+  }).join('');
+  var items=D.items.filter(match).sort(function(a,b){return b.n-a.n});
+  $('board').innerHTML=COLS.map(function(c){
+    var list=items.filter(function(it){return c.ks.indexOf(it.status)>=0});
+    return '<div class="col"><h3>'+c.t+'<span>'+list.length+'</span></h3>'+(list.length?list.map(card).join(''):'<div class="empty">Пусто</div>')+'</div>';
+  }).join('');
+}
+})();
+</script>
+</body>
+</html>
