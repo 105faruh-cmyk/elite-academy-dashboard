@@ -239,7 +239,14 @@ function inR(d){return d>=ST.from&&d<=ST.to}
 /* ---------- aggregation ---------- */
 function jday(d){ // journal counts for a day with type filter: [zay,lid,q,naz,prov,pre,won,revK,priced]
   var o=[0,0,0,0,0,0,0,0,0],m=D.j[d];if(!m)return o;
-  Object.keys(m).forEach(function(t){if(ST.typ!=='all'&&ST.typ!==t)return;for(var i=0;i<9;i++)o[i]+=m[t][i]||0});return o;}
+  Object.keys(m).forEach(function(t){if(ST.typ!=='all'&&ST.typ!==t)return;for(var i=0;i<9;i++)o[i]+=m[t][i]||0});
+  // лиды — из РНП, квалы и встречи — из ССП (как в таблицах)
+  var x=D.ssp&&D.ssp[d],n=function(v){return v==null?null:+v};
+  if(x){var lt=n(x[0]),lo=n(x[1]),qf=n(x[4]),qo=n(x[5]),qop=n(x[2]),ai=n(x[3]),nz=n(x[6]);
+    if(ST.typ==='all'){if(lt!=null||lo!=null)o[1]=(lt||0)+(lo||0);if(qf!=null||qo!=null)o[2]=(qf||0)+(qo||0);else if(qop!=null||ai!=null)o[2]=(qop||0)+(ai||0);if(nz)o[3]=nz;}
+    else if(ST.typ==='t'){if(lt!=null)o[1]=lt;if(qf!=null)o[2]=qf;}
+    else if(ST.typ==='o'){if(lo!=null)o[1]=lo;if(qo!=null)o[2]=qo;}}
+  return o;}
 function mday(d){var o={spend:0,impr:0,reach:0,clicks:0,fb:0};(D.meta[d]||[]).forEach(function(r){o.spend+=r[1];o.impr+=r[2];o.reach+=r[3];o.clicks+=r[4];o.fb+=r[5]});return o}
 function revOf(j){return (j[7]+(ST.avg?Math.max(0,j[5]-j[8])*AVGK:0))/FX}
 function totals(){
