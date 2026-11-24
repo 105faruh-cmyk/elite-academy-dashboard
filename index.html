@@ -221,7 +221,7 @@ function init(){
   var all={};Object.keys(D.meta).forEach(function(d){all[d]=1});Object.keys(D.j).forEach(function(d){if(d>='2026-10-22')all[d]=1});
   DAYS=Object.keys(all).sort();TODAY=DAYS[DAYS.length-1];
   $('upd').textContent='Обновлено '+new Date(D.updated).toLocaleString('ru-RU',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})+' · данные с '+fmtD(DAYS[0])+' по '+fmtD(TODAY);
-  setRange(addD(TODAY,-6),TODAY);
+  setRange(TODAY.slice(0,8)+'01',TODAY);
   buildPicker();
   document.querySelectorAll('#tabs button').forEach(function(b){b.addEventListener('click',function(){
     document.querySelectorAll('#tabs button').forEach(function(x){x.classList.toggle('on',x===b)});ST.level=b.dataset.l;ST.sort=ST.level==='day'?'date':'spend';ST.asc=false;renderTable();})});
