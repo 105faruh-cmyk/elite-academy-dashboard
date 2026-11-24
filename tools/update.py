@@ -37,6 +37,8 @@ if os.path.exists(P('meta.json')):
         except ValueError: cv = 0
         days[r['date_start']].append([aidx[r['id']], round(sp, 2), int(r.get('impressions') or 0), int(r.get('reach') or 0), int(r.get('clicks') or 0), cv])
     D['meta'].update(days)
+if os.path.exists(P('skv.json')):
+    D.setdefault('skv', {}).update(json.load(open(P('skv.json'))))
 if os.path.exists(P('ssp.json')):
     D['ssp'].update(json.load(open(P('ssp.json'))))
 

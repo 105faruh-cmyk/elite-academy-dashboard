@@ -318,6 +318,7 @@ var COLS_DAY=[['name','День'],['spend','Расход'],['impr','Показы
 function zr(){return {spend:0,impr:0,reach:0,clicks:0,fb:0,zay:0,lid:0,q:0,naz:0,prov:0,pre:0,won:0,sale:0,rev:0,slt:0,sqf:0,sqop:0}}
 function finish(o){o.ctr=o.impr?o.clicks/o.impr:null;o.cpc=o.clicks?o.spend/o.clicks:null;o.cpz=o.fb?o.spend/o.fb:null;o.cpl=o.lid?o.spend/o.lid:null;
   o.l2q=o.lid?o.q/o.lid:null;o.cpq=o.q?o.spend/o.q:null;o.romi=o.spend?(o.rev-o.spend)/o.spend:null;o.roas=o.spend?o.rev/o.spend:null;return o}
+function akey(n){return (n||'').replace(/^\s*"[^"]*"\s*/,'').toLowerCase().replace(/ё/g,'е').replace(/[^a-zа-яё0-9]/g,'')}
 function rowsFor(level){
   if(level==='day'){
     return DAYS.filter(inR).map(function(d){var o=zr(),m=mday(d),j=jday(d);['spend','impr','reach','clicks','fb'].forEach(function(k){o[k]=m[k]});
@@ -330,9 +331,15 @@ function rowsFor(level){
     return Object.assign(zr(),{name:nm,sub:sub,status:'',act:false})};
   DAYS.forEach(function(d){if(!inR(d))return;
     (D.meta[d]||[]).forEach(function(r){var a=ads[r[0]],k=keyOf(a);var o=map[k]||(map[k]=mk(a));o.spend+=r[1];o.impr+=r[2];o.reach+=r[3];o.clicks+=r[4];o.fb+=r[5];if(r[1]>0&&/ACTIVE/.test(a[4]))o.act=true;if(level==='ad')o.status=a[4];});
+    var SK=D.skv&&D.skv[d];
     if(ST.typ==='all'||ST.typ==='t')(D.aj[d]||[]).forEach(function(r){var o;if(r[0]===-2){o=map.__tpl||(map.__tpl=Object.assign(zr(),{name:'Шаблон «Можно узнать подробнее?»',sub:'таргет без кодового слова — РК не определить',status:''}));}
       else if(r[0]>=0){var a=ads[r[0]],k=keyOf(a);o=map[k]||(map[k]=mk(a));}else return;
-      o.lid+=r[1];o.q+=r[2];o.naz+=r[3];o.sale+=r[5];o.rev+=r[6]/FX;});});
+      if(!SK){o.lid+=r[1];o.q+=r[2];}o.naz+=r[3];o.sale+=r[5];o.rev+=r[6]/FX;});
+    // лиды и квалы по объявлениям — из «Сквозной аналитики» (как в таблице)
+    if(SK&&(ST.typ==='all'||ST.typ==='t')){var by={};(D.meta[d]||[]).forEach(function(r){if(r[1]>0){var a=ads[r[0]],nk=akey(a[1]);(by[nk]=by[nk]||[]).push(a)}});
+      SK.forEach(function(s){var lst=by[s[0]]||by[s[0].replace(/дубль$/,'')];if(!lst||!lst.length){var o=map['sk|'+s[0]]||(map['sk|'+s[0]]=Object.assign(zr(),{name:s[0],sub:'из сквозной, нет в Meta',status:''}));o.lid+=s[2];o.q+=s[3];return}
+        var w=1/lst.length;lst.forEach(function(a){var k=keyOf(a),o=map[k]||(map[k]=mk(a));o.lid+=s[2]*w;o.q+=s[3]*w;});});}
+  });
   return Object.keys(map).map(function(k){var o=map[k];if(level!=='ad'&&k!=='__tpl')o.status=o.act?'ACTIVE':'PAUSED';return finish(o)});
 }
 function renderTable(){
